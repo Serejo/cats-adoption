@@ -1,15 +1,15 @@
 <template>
   <NuxtLayout name="admin">
     <div class="container mx-auto p-8">
-      <h1 class="text-3xl font-bold mb-6">Gerenciar Solicitações de Adoção</h1>
+      <h1 class="text-3xl font-bold mb-6">Manage Adoption Requests</h1>
       <table class="min-w-full bg-white">
         <thead>
           <tr>
             <th class="py-2 px-4 border-b">ID</th>
-            <th class="py-2 px-4 border-b">Nome do Solicitante</th>
-            <th class="py-2 px-4 border-b">Gato</th>
+            <th class="py-2 px-4 border-b">Applicant Name</th>
+            <th class="py-2 px-4 border-b">Cat</th>
             <th class="py-2 px-4 border-b">Status</th>
-            <th class="py-2 px-4 border-b">Ações</th>
+            <th class="py-2 px-4 border-b">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -23,13 +23,13 @@
                 @click="approveRequest(request.id)"
                 class="text-green-500 hover:underline mr-2"
               >
-                Aprovar
+                Approve
               </button>
               <button
                 @click="rejectRequest(request.id)"
                 class="text-red-500 hover:underline"
               >
-                Rejeitar
+                Reject
               </button>
             </td>
           </tr>
@@ -46,16 +46,16 @@ const requests = ref([]);
 
 onMounted(() => {
   requests.value = [
-    { id: 1, name: "João", catName: "Mittens", status: "Pendente" },
-    { id: 2, name: "Maria", catName: "Whiskers", status: "Pendente" },
+    { id: 1, name: "John", catName: "Mittens", status: "Pending" },
+    { id: 2, name: "Mary", catName: "Whiskers", status: "Pending" },
   ];
 });
 
 function approveRequest(id) {
-  alert(`Solicitação ${id} aprovada!`);
+  alert(`Request ${id} approved!`);
 }
 
 function rejectRequest(id) {
-  alert(`Solicitação ${id} rejeitada!`);
+  alert(`Request ${id} rejected!`);
 }
 </script>

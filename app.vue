@@ -3,7 +3,7 @@
     <header class="bg-gray-800 text-white p-4">
       <div class="container mx-auto flex justify-between items-center">
         <nuxt-link to="/" class="text-xl font-bold">
-          Adoção de Gatos
+          The Defsafe Cat Adoption Platform.
         </nuxt-link>
 
         <nav>
@@ -26,13 +26,13 @@
       </div>
     </header>
 
-    <main class="flex-grow container mx-auto p-4">
+    <main class="flex-grow">
       <NuxtPage />
     </main>
 
     <footer class="bg-gray-800 text-white p-4">
       <div class="container mx-auto text-center">
-        &copy; 2025 Adoção de Gatos. Todos os direitos reservados.
+        &copy; 2025 Cat Adoption. All rights reserved.
       </div>
     </footer>
   </div>

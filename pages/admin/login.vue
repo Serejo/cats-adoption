@@ -14,7 +14,7 @@
           />
         </div>
         <div class="mb-4">
-          <label for="password" class="block mb-2">Senha:</label>
+          <label for="password" class="block mb-2">Password:</label>
           <input
             id="password"
             v-model="form.password"
@@ -27,7 +27,7 @@
           type="submit"
           class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
         >
-          Entrar
+          Sign In
         </button>
       </form>
     </div>

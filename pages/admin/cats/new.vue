@@ -1,9 +1,9 @@
 <template>
   <div class="container mx-auto p-8">
-    <h1 class="text-3xl font-bold mb-6">Adicionar Novo Gato</h1>
+    <h1 class="text-3xl font-bold mb-6">Add New Cat</h1>
     <form @submit.prevent="handleSubmit" class="max-w-lg">
       <div class="mb-4">
-        <label class="block mb-2">Nome:</label>
+        <label class="block mb-2">Name:</label>
         <input
           v-model="form.name"
           type="text"
@@ -12,7 +12,7 @@
         />
       </div>
       <div class="mb-4">
-        <label class="block mb-2">Idade:</label>
+        <label class="block mb-2">Age:</label>
         <input
           v-model="form.age"
           type="number"
@@ -21,7 +21,7 @@
         />
       </div>
       <div class="mb-4">
-        <label class="block mb-2">Descrição:</label>
+        <label class="block mb-2">Description:</label>
         <textarea
           v-model="form.description"
           class="w-full p-2 border rounded"
@@ -31,20 +31,20 @@
       <div class="mb-4">
         <label class="block mb-2">Status:</label>
         <select v-model="form.status" class="w-full p-2 border rounded">
-          <option value="Disponível">Disponível</option>
-          <option value="Adoção em Andamento">Adoção em Andamento</option>
-          <option value="Adotado">Adotado</option>
+          <option value="Available">Available</option>
+          <option value="Adoption in Progress">Adoption in Progress</option>
+          <option value="Adopted">Adopted</option>
         </select>
       </div>
       <div class="mb-4">
-        <label class="block mb-2">Imagem:</label>
+        <label class="block mb-2">Image:</label>
         <input type="file" @change="handleFileUpload" class="w-full" />
       </div>
       <button
         type="submit"
         class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
       >
-        Salvar
+        Save
       </button>
     </form>
   </div>
@@ -57,7 +57,7 @@ const form = ref({
   name: "",
   age: "",
   description: "",
-  status: "Disponível",
+  status: "Available",
   image: null,
 });
 
@@ -66,6 +66,6 @@ function handleFileUpload(event) {
 }
 
 function handleSubmit() {
-  alert("Gato adicionado com sucesso!");
+  alert("Cat added successfully!");
 }
 </script>
