@@ -34,7 +34,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
@@ -44,14 +44,24 @@ const form = ref({
   password: "",
 });
 
-function handleLogin() {
-  if (
-    form.value.email === "admin@example.com" &&
-    form.value.password === "senha123"
-  ) {
-    router.push("/admin/dashboard");
-  } else {
-    alert("Credenciais inválidas!");
+// user: { email: erick.serejo@defsafe.com, password: 123defsafe2025 }
+
+async function handleLogin() {
+  try {
+    const result = await $fetch("/api/admin/login", {
+      method: "POST",
+      body: form.value,
+    });
+    console.log("Login result:", result);
+    if ("error" in result) {
+      alert(result.error);
+    } else {
+      localStorage.setItem("adminToken", result.token);
+      router.push("/admin/dashboard");
+    }
+  } catch (err) {
+    console.error("Login error:", err);
+    alert("Erro ao efetuar login.");
   }
 }
 </script>
