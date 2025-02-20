@@ -9,9 +9,10 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
+import { useCatsStore } from "~/store/cats";
 
 let cats = ref([]);
-
+const catStore = useCatsStore();
 async function loadCats() {
   const { data, error } = await useFetch("/api/cats");
   console.log(data);
@@ -20,6 +21,8 @@ async function loadCats() {
   } else {
     console.log("Dados recebidos:", data.value);
     cats.value = data.value;
+    catStore.setCats(data.value);
+
     console.log("Cats:", cats.value);
   }
 }

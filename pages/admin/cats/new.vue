@@ -61,6 +61,29 @@ const form = ref({
   image: null,
 });
 
+async function createCatData() {
+  const { data, error } = await useFetch("/api/cats", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: "Jack",
+      age: 2,
+      description: "Jack is a very playful cat.",
+      image: null,
+      status: "available",
+    }),
+  });
+  if (!data.value) {
+    console.error("Erro na requisição:", error.value);
+  } else {
+    console.log("Dados recebidos:", data.value);
+    cats.value = data.value;
+    console.log("Cats:", cats.value);
+  }
+}
+
 function handleFileUpload(event) {
   form.value.image = event.target.files[0];
 }

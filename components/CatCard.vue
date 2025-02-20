@@ -1,7 +1,7 @@
 <template>
   <div class="bg-white shadow-md rounded-lg overflow-hidden">
     <img
-      :src="cat.image || '/default-cat.jpg'"
+      :src="cat.image || ''"
       alt="Cat image"
       class="w-full h-48 object-cover"
     />

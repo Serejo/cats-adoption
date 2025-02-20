@@ -4,13 +4,13 @@ import { readBody } from "h3";
 export default defineEventHandler(async (event) => {
   try {
     const body = await readBody(event);
+
+    const { id, ...data } = body;
+
     const newCat = await prisma.cat.create({
       data: {
-        name: body.name,
-        age: body.age,
-        description: body.description,
-        image: body.image, // Se estiver utilizando upload via Supabase Storage, você pode salvar o URL da imagem aqui.
-        status: body.status || "Disponível",
+        ...data,
+        status: data.status || "Available",
       },
     });
     return newCat;
