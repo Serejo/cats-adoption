@@ -37,5 +37,11 @@ export default defineEventHandler(async (event) => {
     data: { token, tokenExpiry },
   });
 
+  setCookie(event, "adminToken", token, {
+    maxAge: TOKEN_EXPIRY_SECONDS,
+    httpOnly: true, // impede acesso pelo JS no cliente (mais seguro)
+    secure: process.env.NODE_ENV === "production",
+  });
+
   return { token, tokenExpiry };
 });

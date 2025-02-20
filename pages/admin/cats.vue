@@ -48,6 +48,10 @@
 <script setup>
 import { ref, onMounted } from "vue";
 
+definePageMeta({
+  middleware: "admin-auth",
+});
+
 const cats = ref([]);
 
 onMounted(() => {

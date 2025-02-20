@@ -19,6 +19,10 @@
 <script setup>
 import { ref, onMounted } from "vue";
 
+definePageMeta({
+  middleware: "admin-auth",
+});
+
 const totalCats = ref(0);
 const totalAdoptions = ref(0);
 

@@ -38,6 +38,10 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
+definePageMeta({
+  middleware: "admin-auth",
+});
+
 const router = useRouter();
 const form = ref({
   email: "",
