@@ -25,6 +25,7 @@
         </div>
         <button
           type="submit"
+          :loading="adminStore.loadingSubmit"
           class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
         >
           Sign In
@@ -36,13 +37,13 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { useRouter } from "vue-router";
+
+import { useAdminStore } from "~/store/admin";
 
 definePageMeta({
   middleware: "admin-auth",
 });
-
-const router = useRouter();
+const adminStore = useAdminStore();
 const form = ref({
   email: "",
   password: "",
@@ -51,21 +52,7 @@ const form = ref({
 // user: { email: erick.serejo@defsafe.com, password: 123defsafe2025 }
 
 async function handleLogin() {
-  try {
-    const result = await $fetch("/api/admin/login", {
-      method: "POST",
-      body: form.value,
-    });
-    console.log("Login result:", result);
-    if ("error" in result) {
-      alert(result.error);
-    } else {
-      localStorage.setItem("adminToken", result.token);
-      router.push("/admin/dashboard");
-    }
-  } catch (err) {
-    console.error("Login error:", err);
-    alert("Erro ao efetuar login.");
-  }
+  const { email, password } = form.value;
+  adminStore.handleLogin(email, password);
 }
 </script>
