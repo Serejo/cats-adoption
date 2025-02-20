@@ -9,28 +9,20 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import CatCard from "~/components/CatCard.vue";
 
-const cats = ref([]);
+let cats = ref([]);
 
-onMounted(() => {
-  cats.value = [
-    {
-      id: 1,
-      name: "Mittens",
-      age: 2,
-      description: "Playful cat",
-      image: "/cat1.jpg",
-      status: "Available",
-    },
-    {
-      id: 2,
-      name: "Whiskers",
-      age: 3,
-      description: "Quiet cat",
-      image: "/cat2.jpg",
-      status: "Available",
-    },
-  ];
-});
+async function loadCats() {
+  const { data, error } = await useFetch("/api/cats");
+  console.log(data);
+  if (!data.value) {
+    console.error("Erro na requisição:", error.value);
+  } else {
+    console.log("Dados recebidos:", data.value);
+    cats.value = data.value;
+    console.log("Cats:", cats.value);
+  }
+}
+
+onMounted(loadCats);
 </script>

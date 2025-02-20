@@ -38,24 +38,6 @@
   </div>
 </template>
 
-<script setup>
-import { createClient } from "@supabase/supabase-js";
-import { onMounted } from "vue";
-
-const cats = ref([]);
-
-async function loadCats() {
-  // useFetch retorna um objeto com data, error, pending, etc.
-  const { data, error, pending } = await useFetch("/api/cats");
-
-  if (error.value) {
-    console.error("Erro na requisição:", error.value);
-  } else {
-    console.log("Dados recebidos:", data.value);
-  }
-}
-
-onMounted(loadCats);
-</script>
+<script setup></script>
 
 <style></style>
