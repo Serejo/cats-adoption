@@ -1,31 +1,29 @@
 <template>
   <div class="container mx-auto py-8">
     <h1 class="text-3xl font-bold mb-6">Cats Available for Adoption</h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div v-if="loading" class="text-center">
+      <Icon
+        name="heroicons-outline:refresh"
+        class="animate-spin inline-block mr-2"
+      />
+      Loading...
+    </div>
+    <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <CatCard v-for="cat in cats" :key="cat.id" :cat="cat" />
     </div>
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted } from "vue";
+<script setup lang="ts">
+import { onMounted, computed } from "vue";
 import { useCatsStore } from "~/store/cats";
 
-let cats = ref([]);
-const catStore = useCatsStore();
-async function loadCats() {
-  const { data, error } = await useFetch("/api/cats");
-  console.log(data);
-  if (!data.value) {
-    console.error("Erro na requisição:", error.value);
-  } else {
-    console.log("Dados recebidos:", data.value);
-    cats.value = data.value;
-    catStore.setCats(data.value);
+const catsStore = useCatsStore();
 
-    console.log("Cats:", cats.value);
-  }
-}
+onMounted(() => {
+  catsStore.fetchCats();
+});
 
-onMounted(loadCats);
+const cats = computed(() => catsStore.cats);
+const loading = computed(() => catsStore.loadingList);
 </script>

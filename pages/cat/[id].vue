@@ -35,22 +35,11 @@ import { useCatsStore } from "~/store/cats";
 
 const catStore = useCatsStore();
 const route = useRoute();
-const cat = ref<CatModel | null>(null);
+let cat = ref<CatModel | null>(null);
 const catId = Number(route.params.id);
 
-async function loadCat() {
-  const catFromStore = catStore.getCatById(catId);
-  if (catFromStore) {
-    cat.value = catFromStore;
-    return;
-  } else {
-    const { data, error } = await useFetch(`/api/cats/${catId}`);
-    if (error.value) {
-      console.error("Error loading cat details:", error.value);
-    } else {
-    }
-  }
-}
-
-onMounted(loadCat);
+onMounted(() => {
+  catStore.loadCat(catId);
+  cat.value = catStore.catDetail;
+});
 </script>
