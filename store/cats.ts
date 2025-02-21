@@ -37,9 +37,41 @@ export const useCatsStore = defineStore("cats", {
     setCats(newCats: CatModel[]) {
       this.cats = newCats;
     },
-    addCat(cat: CatModel) {
-      this.cats.push(cat);
+
+    async addCat(cat: CatModel) {
+      try {
+        const newCat = await $fetch<CatModel>("/api/cats", {
+          method: "POST",
+          body: cat,
+        });
+      } catch (error) {
+        console.error("Error adding cat:", error);
+      }
     },
+
+    async updateCat(cat: CatModel) {
+      try {
+        await $fetch<CatModel>(`/api/cats/${cat.id}`, {
+          method: "PUT",
+          body: cat,
+        });
+        return;
+      } catch (error) {
+        console.error("Error updating cat:", error);
+      }
+    },
+
+    async deleteCat(catId: number) {
+      try {
+        await $fetch<CatModel>(`/api/cats/${catId}`, {
+          method: "DELETE",
+        });
+        return;
+      } catch (error) {
+        console.error("Error deleting cat:", error);
+      }
+    },
+
     getCatById(id: number) {
       console.log("id", id);
       return this.cats.find((cat) => cat.id === id);
