@@ -26,11 +26,8 @@ export const useCatsStore = defineStore("cats", {
         this.catDetail = catFromStore;
         return;
       } else {
-        const { data, error } = await useFetch(`/api/cats/${catId}`);
-        if (error.value) {
-          console.error("Error loading cat details:", error.value);
-        } else {
-        }
+        const catData = await $fetch<CatModel>(`/api/cats/${catId}`);
+        this.catDetail = catData;
       }
     },
 

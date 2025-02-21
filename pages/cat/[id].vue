@@ -48,8 +48,8 @@ let cat = ref<CatModel | null>(null);
 const catId = Number(route.params.id);
 const showRequestModal = ref(false);
 
-onMounted(() => {
-  catStore.loadCat(catId);
+onMounted(async () => {
+  await catStore.loadCat(catId);
   cat.value = catStore.catDetail;
 });
 
@@ -60,9 +60,16 @@ function openRequestModal() {
 async function handleRequest(form: AdoptionModel) {
   form.catId = catId;
   form.catName = cat.value?.name || "";
-  await adoptionStore.requestAdoption({
-    ...form,
-  });
+  await adoptionStore
+    .requestAdoption({
+      ...form,
+    })
+    .then(() => {
+      adoptionStore.changeStatusCat(catId, "Pending");
+      catStore.loadCat(catId);
+      cat.value = catStore.catDetail;
+      showRequestModal.value = false;
+    });
   showRequestModal.value = false;
 }
 </script>

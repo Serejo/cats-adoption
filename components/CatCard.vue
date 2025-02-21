@@ -10,6 +10,13 @@
       <p class="text-gray-600">
         Age: {{ cat.age }} {{ cat.age === 1 ? "year" : "years" }}
       </p>
+      <p class="text-gray-600" >Status: <p
+        :class="{
+                  'text-green-600': cat.status === 'Available',
+                  'text-yellow-600': cat.status === 'Pending',
+                  'text-blue-600': cat.status === 'Adopted',
+                }" 
+        >{{ cat.status }}</p> </p>
       <p class="text-gray-800">{{ cat.description }}</p>
       <nuxt-link
         :to="`/cat/${cat.id}`"

@@ -97,21 +97,23 @@
                   <Icon
                     :name="
                       cat.status === 'Available'
-                        ? 'heroicons-solid:check-circle'
-                        : 'heroicons-solid:exclamation-circle'
+                        ? 'heroicons-outline:check-circle'
+                        : cat.status === 'Pending'
+                        ? 'heroicons-outline:clock'
+                        : 'heroicons-outline:emoji-happy'
                     "
                     :class="{
-                      'text-green-600': cat.status === 'Available',
+                      'text-blue-600': cat.status === 'Available',
                       'text-yellow-600': cat.status === 'Pending',
-                      'text-red-600': cat.status === 'Adopted',
+                      'text-green-600': cat.status === 'Adopted',
                     }"
                     size="20"
                   />
                   <span
                     :class="{
-                      'text-green-600': cat.status === 'Available',
+                      'text-blue-600': cat.status === 'Available',
                       'text-yellow-600': cat.status === 'Pending',
-                      'text-red-600': cat.status === 'Adopted',
+                      'text-green-600': cat.status === 'Adopted',
                     }"
                   >
                     {{ cat.status }}

@@ -61,25 +61,41 @@
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                 {{ request.catName }}
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+              <td
+                :class="{
+                  'text-green-600': request.status === 'Available',
+                  'text-yellow-600': request.status === 'Pending',
+                  'text-blue-600': request.status === 'Adopted',
+                  'text-red-600': request.status === 'Rejected',
+                }"
+              >
                 {{ request.status }}
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                 {{ formatDate(request.createdAt) }}
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+              <td
+                class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"
+                v-if="request.status !== 'Adopted'"
+              >
                 <button
                   @click="approveRequest(request.id)"
-                  class="text-green-500 hover:underline mr-2"
+                  class="bg-green-500 text-white py-2 px-4 mx-2 rounded hover:bg-green-600"
                 >
                   Approve
                 </button>
                 <button
                   @click="rejectRequest(request.id)"
-                  class="text-red-500 hover:underline"
+                  class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
                 >
                   Reject
                 </button>
+              </td>
+              <td
+                class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"
+                v-else
+              >
+                <span>Not available</span>
               </td>
             </tr>
           </tbody>
@@ -105,12 +121,16 @@ onMounted(() => {
   adoptionStore.fetchAdoptions();
 });
 
-function approveRequest(id) {
-  alert(`Request ${id} approved!`);
+async function approveRequest(id) {
+  await adoptionStore.approveAdoption(id).then(() => {
+    adoptionStore.changeStatusCat(id, "Adopted");
+    adoptionStore.fetchAdoptions();
+  });
 }
 
-function rejectRequest(id) {
-  alert(`Request ${id} rejected!`);
+async function rejectRequest(id) {
+  await adoptionStore.rejectAdoption(id);
+  adoptionStore.fetchAdoptions();
 }
 
 function formatDate(date) {

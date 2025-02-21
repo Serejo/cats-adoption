@@ -1,6 +1,7 @@
 import { request } from "http";
 import { defineStore } from "pinia";
 import type { AdoptionModel } from "~/interfaces/adoption_model";
+import type { CatModel } from "~/interfaces/cat_model";
 
 export const useAdoptionsStore = defineStore("adoptions", {
   state: () => ({
@@ -53,6 +54,35 @@ export const useAdoptionsStore = defineStore("adoptions", {
       } catch (error) {
         console.error("Error requesting adoption:", error);
       }
+    },
+
+    async approveAdoption(adoptionId: number) {
+      try {
+        await $fetch<AdoptionModel>(`/api/adoptions/approve/${adoptionId}`, {
+          method: "PUT",
+        });
+      } catch (error) {
+        console.error("Error approving adoption:", error);
+      }
+    },
+
+    async rejectAdoption(adoptionId: number) {
+      try {
+        await $fetch<AdoptionModel>(`/api/adoptions/reject/${adoptionId}`, {
+          method: "PUT",
+        });
+      } catch (error) {
+        console.error("Error rejecting adoption:", error);
+      }
+    },
+
+    async changeStatusCat(adoptionId: number, status: string) {
+      const cat = await $fetch<CatModel>(`/api/cats/${adoptionId}`);
+      cat.status = status;
+      await $fetch<CatModel>(`/api/cats/${cat.id}`, {
+        method: "PUT",
+        body: cat,
+      });
     },
   },
 });
