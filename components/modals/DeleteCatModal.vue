@@ -3,7 +3,7 @@
     v-if="show"
     class="fixed inset-0 z-50 flex items-center justify-center bg-gray-500/75 transition-opacity"
   >
-    <div class="bg-white rounded-lg shadow-lg w-full max-w-sm p-6">
+    <div class="bg-[#FFFFFF] rounded-lg shadow-lg w-full max-w-sm p-6">
       <h2 class="text-xl font-bold mb-4 text-primary">Confirm Delete</h2>
       <p class="mb-6">Are you sure you want to delete this cat?</p>
       <div class="flex justify-center space-x-2">

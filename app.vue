@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen flex flex-col">
-    <header class="bg-gray-800 text-white p-4">
+    <header class="bg-[#4E2096] text-white p-4">
       <div class="container mx-auto flex justify-between items-center">
         <nuxt-link to="/" class="text-xl font-bold">
           The Defsafe Cat Adoption Platform.
@@ -30,7 +30,7 @@
       <NuxtPage />
     </main>
 
-    <footer class="bg-gray-800 text-white p-4">
+    <footer class="bg-[#4E2096] text-white p-4">
       <div class="container mx-auto text-center">
         &copy; 2025 Cat Adoption. All rights reserved.
       </div>

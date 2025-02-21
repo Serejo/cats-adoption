@@ -4,7 +4,7 @@
       <h1 class="text-3xl font-bold mb-6">Manage Adoption Requests</h1>
       <div class="overflow-x-auto">
         <table
-          class="min-w-full bg-white shadow rounded divide-y divide-gray-200"
+          class="min-w-full bg-[#FFFFFF] shadow rounded divide-y divide-gray-200"
         >
           <thead class="bg-gray-50">
             <tr>

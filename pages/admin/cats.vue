@@ -12,7 +12,7 @@
       </div>
       <div class="overflow-x-auto">
         <table
-          class="min-w-full bg-white shadow rounded divide-y divide-gray-200"
+          class="min-w-full bg-[#FFFFFF] shadow rounded divide-y divide-gray-200"
         >
           <thead class="bg-gray-50">
             <tr>
@@ -55,7 +55,7 @@
           </thead>
           <tbody
             v-if="catsStore.loadingList"
-            class="bg-white divide-y divide-gray-200"
+            class="bg-[#FFFFFF] divide-y divide-gray-200"
           >
             <tr>
               <td
@@ -66,7 +66,7 @@
               </td>
             </tr>
           </tbody>
-          <tbody v-else class="bg-white divide-y divide-gray-200">
+          <tbody v-else class="bg-[#FFFFFF] divide-y divide-gray-200">
             <tr
               v-for="cat in cats"
               :key="cat.id"

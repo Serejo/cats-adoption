@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen flex items-center justify-center bg-gray-100">
-    <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
+    <div class="bg-[#FFFFFF] p-8 rounded shadow-md w-full max-w-md">
       <h2 class="text-2xl font-bold mb-6 text-center">Admin Login</h2>
       <form @submit.prevent="handleLogin">
         <div class="mb-4">
@@ -26,7 +26,7 @@
         <button
           type="submit"
           :loading="adminStore.loadingSubmit"
-          class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+          class="w-full bg-[#4E2096] text-white py-2 rounded"
         >
           Sign In
         </button>

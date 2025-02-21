@@ -3,7 +3,7 @@
     v-if="show"
     class="fixed inset-0 z-50 flex items-center justify-center bg-gray-500/75 transition-opacity"
   >
-    <div class="bg-white rounded-lg shadow-lg w-full max-w-md p-6">
+    <div class="bg-[#FFFFFF] rounded-lg shadow-lg w-full max-w-md p-6">
       <h2 class="text-2xl font-bold mb-4 text-primary">Create New Cat</h2>
       <form @submit.prevent="handleSubmit">
         <div class="mb-4">

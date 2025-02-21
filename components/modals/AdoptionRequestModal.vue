@@ -3,7 +3,7 @@
     v-if="show"
     class="fixed inset-0 z-50 flex items-center justify-center bg-gray-500/75 transition-opacity"
   >
-    <div class="bg-white rounded-lg shadow-lg w-full max-w-md p-6">
+    <div class="bg-[#FFFFFF] rounded-lg shadow-lg w-full max-w-md p-6">
       <h2 class="text-2xl font-bold mb-4 text-primary">Adoption Request</h2>
       <form @submit.prevent="handleSubmit" class="max-w-lg mx-auto">
         <div class="mb-4">
@@ -44,13 +44,21 @@
             required
           />
         </div>
-
-        <button
-          type="submit"
-          class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-        >
-          Submit Request
-        </button>
+        <div class="flex justify-center space-x-2">
+          <button
+            type="button"
+            @click="closeModal"
+            class="px-4 py-2 rounded bg-gray-300 text-gray-700 hover:bg-gray-400"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            class="px-4 py-2 rounded bg-[#4E2096] text-white"
+          >
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   </div>
@@ -65,6 +73,7 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{
+  (e: "close"): void;
   (e: "submit", form: AdoptionModel): void;
 }>();
 
@@ -101,5 +110,9 @@ function formatPhone() {
     .replace(/(\d{2})(\d)/, "($1) $2")
     .replace(/(\d{5})(\d)/, "$1-$2")
     .replace(/(-\d{4})\d+?$/, "$1");
+}
+
+function closeModal() {
+  emit("close");
 }
 </script>
