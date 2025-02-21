@@ -1,7 +1,7 @@
 <template>
   <div class="bg-white shadow-md rounded-lg overflow-hidden">
     <img
-      :src="cat.image || ''"
+      :src="cat.image ||  '~/assets/Elements/default-cat-1.png'" 
       alt="Cat image"
       class="w-full h-48 object-cover"
     />
@@ -10,7 +10,7 @@
       <p class="text-gray-600">
         Age: {{ cat.age }} {{ cat.age === 1 ? "year" : "years" }}
       </p>
-      <p class="text-gray-600" >Status: <p
+      <p class="text-gray-600" >  <p
         :class="{
                   'text-green-600': cat.status === 'Available',
                   'text-yellow-600': cat.status === 'Pending',
