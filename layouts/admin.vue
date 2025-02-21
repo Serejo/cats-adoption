@@ -2,7 +2,7 @@
   <div class="flex min-h-screen">
     <!-- Sidebar -->
     <aside
-      class="w-56 bg-gray-800 text-white p-6 flex flex-col justify-between"
+      class="w-56 bg-[#4E2096] text-white p-6 flex flex-col justify-between"
     >
       <div>
         <h2 class="text-2xl font-bold mb-6">Admin</h2>

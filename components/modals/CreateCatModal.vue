@@ -58,7 +58,7 @@
           </button>
           <button
             type="submit"
-            class="px-4 py-2 rounded bg-gray-300 text-gray-700 hover:bg-gray-400"
+            class="px-4 py-2 rounded bg-[#4E2096] text-white"
           >
             Create
           </button>

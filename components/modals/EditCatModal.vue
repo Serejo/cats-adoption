@@ -58,7 +58,7 @@
           </button>
           <button
             type="submit"
-            class="px-4 py-2 rounded bg-[#4E2096] text-gray-700"
+            class="px-4 py-2 rounded bg-[#4E2096] text-white"
           >
             Update
           </button>
