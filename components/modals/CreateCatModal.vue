@@ -8,12 +8,21 @@
       <form @submit.prevent="handleSubmit">
         <div class="mb-4">
           <label class="block text-gray-700 mb-1">Name</label>
-          <input
-            v-model="form.name"
-            type="text"
-            class="w-full border rounded p-2"
-            required
-          />
+          <div class="flex">
+            <input
+              v-model="form.name"
+              type="text"
+              class="w-full border rounded p-2"
+              required
+            />
+            <button
+              type="button"
+              @click="generateRandomName"
+              class="ml-2 px-3 py-2 bg-[#4E2096] text-white rounded hover:bg-blue-600"
+            >
+              Random
+            </button>
+          </div>
         </div>
         <div class="mb-4">
           <label class="block text-gray-700 mb-1">Age</label>
@@ -70,6 +79,11 @@
 
 <script setup lang="ts">
 import { ref, defineProps, defineEmits } from "vue";
+import { faker } from "@faker-js/faker";
+
+function generateRandomName() {
+  form.value.name = faker.animal.cat();
+}
 
 const props = defineProps<{
   show: boolean;
