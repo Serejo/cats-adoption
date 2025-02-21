@@ -38,7 +38,8 @@ model AdoptionRequest {
   contact   String
   visitDate DateTime
   catId     Int
-  status    String   @default("Pending") // "Pending", "Approved", "Rejected"
+  catName   String   @default("")
+  status    String   @default("Pending")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

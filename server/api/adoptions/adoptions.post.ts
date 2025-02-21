@@ -18,6 +18,8 @@ export default defineEventHandler(async (event) => {
       contact,
       visitDate: new Date(visitDate),
       catId: Number(catId),
+      catName: body.catName || "",
+      status: "Pending",
     },
   });
   return newRequest;

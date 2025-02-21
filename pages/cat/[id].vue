@@ -59,6 +59,7 @@ function openRequestModal() {
 
 async function handleRequest(form: AdoptionModel) {
   form.catId = catId;
+  form.catName = cat.value?.name || "";
   await adoptionStore.requestAdoption({
     ...form,
   });

@@ -74,6 +74,7 @@ const form = ref({
   contact: "",
   visitDate: "",
   catId: 0,
+  catName: "",
   status: "Pending",
 });
 

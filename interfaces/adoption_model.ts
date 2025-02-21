@@ -5,7 +5,8 @@ export interface AdoptionModel {
   contact: string;
   visitDate: Date;
   catId: number;
-  status: string; // "Pending", "Approved", "Rejected"
+  catName: string;
+  status: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
