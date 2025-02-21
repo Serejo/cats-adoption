@@ -2,39 +2,71 @@
   <NuxtLayout name="admin">
     <div class="container mx-auto p-8">
       <h1 class="text-3xl font-bold mb-6">Manage Adoption Requests</h1>
-      <table class="min-w-full bg-white">
-        <thead>
-          <tr>
-            <th class="py-2 px-4 border-b">ID</th>
-            <th class="py-2 px-4 border-b">Applicant Name</th>
-            <th class="py-2 px-4 border-b">Cat</th>
-            <th class="py-2 px-4 border-b">Status</th>
-            <th class="py-2 px-4 border-b">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="request in requests" :key="request.id">
-            <td class="py-2 px-4 border-b">{{ request.id }}</td>
-            <td class="py-2 px-4 border-b">{{ request.name }}</td>
-            <td class="py-2 px-4 border-b">{{ request.catName }}</td>
-            <td class="py-2 px-4 border-b">{{ request.status }}</td>
-            <td class="py-2 px-4 border-b">
-              <button
-                @click="approveRequest(request.id)"
-                class="text-green-500 hover:underline mr-2"
+      <div class="overflow-x-auto">
+        <table
+          class="min-w-full bg-white shadow rounded divide-y divide-gray-200"
+        >
+          <thead class="bg-gray-50">
+            <tr>
+              <th
+                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
               >
-                Approve
-              </button>
-              <button
-                @click="rejectRequest(request.id)"
-                class="text-red-500 hover:underline"
+                ID
+              </th>
+              <th
+                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
               >
-                Reject
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+                Applicant Name
+              </th>
+              <th
+                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                Cat
+              </th>
+              <th
+                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                Status
+              </th>
+              <th
+                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                Actions
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="request in requests" :key="request.id">
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                {{ request.id }}
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                {{ request.name }}
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                {{ request.catName }}
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                {{ request.status }}
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                <button
+                  @click="approveRequest(request.id)"
+                  class="text-green-500 hover:underline mr-2"
+                >
+                  Approve
+                </button>
+                <button
+                  @click="rejectRequest(request.id)"
+                  class="text-red-500 hover:underline"
+                >
+                  Reject
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </NuxtLayout>
 </template>

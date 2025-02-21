@@ -18,16 +18,21 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
+import { useCatsStore } from "~/store/cats";
 
 definePageMeta({
   middleware: "admin-auth",
 });
 
+const catsStore = useCatsStore();
 const totalCats = ref(0);
 const totalAdoptions = ref(0);
 
-onMounted(() => {
-  totalCats.value = 10;
-  totalAdoptions.value = 5;
+onMounted(async () => {
+  await catsStore.fetchCats();
+  totalCats.value = catsStore.cats.length;
+  totalAdoptions.value = catsStore.cats.filter(
+    (cat) => cat.status === "Pending"
+  ).length;
 });
 </script>
