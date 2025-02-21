@@ -89,8 +89,8 @@ A full-stack application for cat adoption built with modern technologies. This p
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/def-safe/defsafe-developers-test.git
-   cd defsafe-developers-test
+   git clone https://github.com/Serejo/cats-adoption
+   cd cats-adoption
 
    ```
 
