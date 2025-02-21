@@ -73,18 +73,18 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
+import { useAdoptionsStore } from "~/store/adoptions";
 
 definePageMeta({
   middleware: "admin-auth",
 });
 
-const requests = ref([]);
+const adoptionStore = useAdoptionsStore();
+
+const requests = computed(() => adoptionStore.adoptions);
 
 onMounted(() => {
-  requests.value = [
-    { id: 1, name: "John", catName: "Mittens", status: "Pending" },
-    { id: 2, name: "Mary", catName: "Whiskers", status: "Pending" },
-  ];
+  adoptionStore.fetchAdoptions();
 });
 
 function approveRequest(id) {

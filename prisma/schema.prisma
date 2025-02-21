@@ -10,25 +10,15 @@ datasource db {
 }
 
 model Cat {
-  id          Int      @id @default(autoincrement())
-  name        String
-  age         Int
-  description String?
-  image       String?
-  status      String   @default("Available")
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
-model Adoption {
-  id        Int      @id @default(autoincrement())
-  name      String
-  phone     String
-  email     String
-  reason    String?
-  status    String   @default("Pending")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id              Int               @id @default(autoincrement())
+  name            String
+  age             Int
+  description     String?
+  image           String?
+  status          String            @default("Available")
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  AdoptionRequest AdoptionRequest[]
 }
 
 model Admin {
@@ -39,4 +29,18 @@ model Admin {
   tokenExpiry DateTime?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+}
+
+model AdoptionRequest {
+  id        Int      @id @default(autoincrement())
+  name      String
+  cpf       String
+  contact   String
+  visitDate DateTime
+  catId     Int
+  status    String   @default("Pending") // "Pending", "Approved", "Rejected"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  cat Cat @relation(fields: [catId], references: [id])
 }

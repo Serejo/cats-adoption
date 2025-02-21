@@ -1,3 +1,4 @@
+import { request } from "http";
 import { defineStore } from "pinia";
 import type { AdoptionModel } from "~/interfaces/adoption_model";
 
@@ -24,20 +25,9 @@ export const useAdoptionsStore = defineStore("adoptions", {
       this.adoptions = newAdoptions;
     },
 
-    async addAdoption(adoption: AdoptionModel) {
-      try {
-        const newAdoption = await $fetch("/api/adoptions", {
-          method: "POST",
-          body: adoption,
-        });
-      } catch (error) {
-        console.error("Error adding adoption:", error);
-      }
-    },
-
     async updateAdoption(adoption: AdoptionModel) {
       try {
-        await $fetch(`/api/adoptions/${adoption.id}`, {
+        await $fetch<AdoptionModel>(`/api/adoptions/${adoption.id}`, {
           method: "PUT",
           body: adoption,
         });
@@ -49,6 +39,20 @@ export const useAdoptionsStore = defineStore("adoptions", {
 
     async getAdoptionById(adoptionId: number) {
       return this.adoptions.find((adoption) => adoption.id === adoptionId);
+    },
+
+    async requestAdoption(adoption: AdoptionModel) {
+      try {
+        const newAdoption = await $fetch<AdoptionModel>(
+          "/api/adoptions/adoptions",
+          {
+            method: "POST",
+            body: adoption,
+          }
+        );
+      } catch (error) {
+        console.error("Error requesting adoption:", error);
+      }
     },
   },
 });
